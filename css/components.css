@@ -308,3 +308,43 @@
   background: rgba(115, 134, 120, 0.24);
   transform: translateY(-1px);
 }
+
+.language-item {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.language-item__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.language-item__name {
+  color: var(--text-primary);
+  font-weight: 750;
+}
+
+.language-item__percentage {
+  color: var(--text-secondary);
+  font-weight: 700;
+}
+
+.language-item__track {
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.16);
+  overflow: hidden;
+}
+
+.language-item__bar {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    var(--color-prussian-blue-soft),
+    var(--color-xanadu)
+  );
+}

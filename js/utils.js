@@ -31,3 +31,31 @@ function getFallbackText(value, fallback = "Not available") {
 function sanitizeUsername(username) {
   return username.trim();
 }
+
+function calculateLanguageBreakdown(repositories) {
+  const languageCounts = repositories.reduce((accumulator, repo) => {
+    if (!repo.language) {
+      return accumulator;
+    }
+
+    accumulator[repo.language] = (accumulator[repo.language] || 0) + 1;
+    return accumulator;
+  }, {});
+
+  const totalLanguageRepos = Object.values(languageCounts).reduce(
+    (sum, count) => sum + count,
+    0
+  );
+
+  if (totalLanguageRepos === 0) {
+    return [];
+  }
+
+  return Object.entries(languageCounts)
+    .map(([language, count]) => ({
+      language,
+      count,
+      percentage: Math.round((count / totalLanguageRepos) * 100),
+    }))
+    .sort((a, b) => b.percentage - a.percentage);
+}

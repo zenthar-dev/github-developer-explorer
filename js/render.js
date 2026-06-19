@@ -55,9 +55,12 @@ function renderUserProfile(user) {
 }
 
 function renderDeveloperOverview(user, repositories) {
+  const languageBreakdown = calculateLanguageBreakdown(repositories);
+
   renderUserProfile(user);
   renderUserStats(user, repositories);
   renderRepositories(repositories);
+  renderLanguageBreakdown(languageBreakdown);
 }
 
 function createRepositoryCard(repo) {
@@ -122,4 +125,43 @@ function renderRepositories(repositories) {
 function renderSortedRepositories(sortType) {
   const sortedRepositories = sortRepositories(sortType);
   renderRepositories(sortedRepositories);
+}
+
+function createLanguageItem(languageData) {
+  return `
+    <div class="language-item">
+      <div class="language-item__header">
+        <span class="language-item__name">${languageData.language}</span>
+        <span class="language-item__percentage">${languageData.percentage}%</span>
+      </div>
+
+      <div class="language-item__track">
+        <div
+          class="language-item__bar"
+          style="width: ${languageData.percentage}%"
+        ></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderLanguageBreakdown(languageBreakdown) {
+  const languageList = document.getElementById("languageList");
+
+  if (!languageList) {
+    return;
+  }
+
+  if (!languageBreakdown.length) {
+    languageList.innerHTML = `
+      <p class="empty-text">
+        No language data available for this developer.
+      </p>
+    `;
+    return;
+  }
+
+  languageList.innerHTML = languageBreakdown
+    .map((languageData) => createLanguageItem(languageData))
+    .join("");
 }

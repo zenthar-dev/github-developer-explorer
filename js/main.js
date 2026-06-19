@@ -16,6 +16,7 @@ async function handleDeveloperSearch(event) {
 
     setCurrentUser(user);
     setRepositories(repositories);
+    setLanguages(calculateLanguageBreakdown(repositories));
 
     renderDeveloperOverview(user, repositories);
 
