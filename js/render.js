@@ -57,4 +57,64 @@ function renderUserProfile(user) {
 function renderDeveloperOverview(user, repositories) {
   renderUserProfile(user);
   renderUserStats(user, repositories);
+  renderRepositories(repositories);
+}
+
+function createRepositoryCard(repo) {
+  const repoDescription = getFallbackText(
+    repo.description,
+    "No description provided for this repository."
+  );
+
+  const repoLanguage = getFallbackText(repo.language, "Not specified");
+
+  return `
+    <article class="repo-card">
+      <div class="repo-card__header">
+        <h4 class="repo-card__title">${repo.name}</h4>
+        <span class="repo-card__badge">${repo.visibility || "public"}</span>
+      </div>
+
+      <p class="repo-card__description">${repoDescription}</p>
+
+      <div class="repo-card__meta">
+        <span>Language: ${repoLanguage}</span>
+        <span>Stars: ${formatNumber(repo.stargazers_count)}</span>
+        <span>Forks: ${formatNumber(repo.forks_count)}</span>
+        <span>Issues: ${formatNumber(repo.open_issues_count)}</span>
+        <span>Updated: ${formatDate(repo.updated_at)}</span>
+      </div>
+
+      <a
+        href="${repo.html_url}"
+        class="repo-card__button"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View Repository
+      </a>
+    </article>
+  `;
+}
+
+function renderRepositories(repositories) {
+  const repositoriesGrid = document.getElementById("repositoriesGrid");
+
+  if (!repositoriesGrid) {
+    return;
+  }
+
+  if (!repositories.length) {
+    repositoriesGrid.innerHTML = `
+      <article class="repo-empty-card">
+        <h4>No public repositories found</h4>
+        <p>This developer does not have any public repositories.</p>
+      </article>
+    `;
+    return;
+  }
+
+  repositoriesGrid.innerHTML = repositories
+    .map((repo) => createRepositoryCard(repo))
+    .join("");
 }
