@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(0, 49, 83, 0.35), transparent 32%),
+    linear-gradient(135deg, var(--bg-main), #030712);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+}
+
+input,
+select {
+  border: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--color-xanadu);
+  color: var(--text-primary);
+}
+
+.empty-text {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-header__eyebrow,
+.topbar__eyebrow {
+  color: var(--color-xanadu-light);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-header__title,
+.topbar__title {
+  color: var(--text-primary);
+  font-size: 1.35rem;
+  font-weight: 800;
+}

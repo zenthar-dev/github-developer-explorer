@@ -1,0 +1,43 @@
+:root {
+  /* Brand Palette */
+  --color-prussian-blue: #003153;
+  --color-prussian-blue-dark: #001f35;
+  --color-prussian-blue-soft: #0a426b;
+
+  --color-xanadu: #738678;
+  --color-xanadu-dark: #5f7064;
+  --color-xanadu-light: #91a396;
+
+  /* Background Colors */
+  --bg-main: #07111d;
+  --bg-sidebar: #081827;
+  --bg-card: #0f2133;
+  --bg-card-soft: #132b40;
+  --bg-input: #0b1a29;
+
+  /* Text Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-dark: #101820;
+
+  /* Border and Effects */
+  --border-color: rgba(148, 163, 184, 0.18);
+  --border-strong: rgba(148, 163, 184, 0.32);
+  --shadow-card: 0 18px 45px rgba(0, 0, 0, 0.28);
+
+  /* Status Colors */
+  --success-color: #22c55e;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+
+  /* Layout */
+  --sidebar-width: 260px;
+  --border-radius-sm: 10px;
+  --border-radius-md: 16px;
+  --border-radius-lg: 24px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
