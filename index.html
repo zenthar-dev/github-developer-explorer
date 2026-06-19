@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>GitHub Developer Explorer</title>
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="./css/variables.css" />
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/layout.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+</head>
+
+<body>
+  <!-- Main App Wrapper -->
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <div class="sidebar__logo">GH</div>
+        <div>
+          <h1 class="sidebar__title">DevExplorer</h1>
+          <p class="sidebar__subtitle">GitHub Analytics</p>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Main navigation">
+        <a href="#overview" class="sidebar__link active">Overview</a>
+        <a href="#profile" class="sidebar__link">Profile</a>
+        <a href="#repositories" class="sidebar__link">Repositories</a>
+        <a href="#languages" class="sidebar__link">Languages</a>
+        <a href="#status" class="sidebar__link">Status</a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <p>Built using GitHub REST API</p>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Header -->
+      <header class="topbar">
+        <div>
+          <p class="topbar__eyebrow">GitHub Developer Explorer</p>
+          <h2 class="topbar__title">Explore Developer Profiles</h2>
+        </div>
+
+        <button class="theme-toggle" type="button" aria-label="Toggle theme">
+          Toggle Theme
+        </button>
+      </header>
+
+      <!-- Hero / Search Section -->
+      <section class="hero" id="overview">
+        <div class="hero__content">
+          <h2 class="hero__title">Explore the GitHub Universe</h2>
+          <p class="hero__description">
+            Search any GitHub username to view profile details, public repositories,
+            developer stats, and language insights.
+          </p>
+
+          <form class="search-form" id="searchForm">
+            <input
+              type="text"
+              id="usernameInput"
+              class="search-form__input"
+              placeholder="Enter GitHub username..."
+              autocomplete="off"
+            />
+
+            <button class="search-form__button" type="submit">
+              Search Developer
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Status / Loading / Error Section -->
+      <section class="status-section" id="status">
+        <div class="status-card" id="statusCard">
+          <h3 class="status-card__title">Ready to Explore</h3>
+          <p class="status-card__message">
+            Enter a GitHub username to begin exploring developer data.
+          </p>
+        </div>
+      </section>
+
+      <!-- Stats Cards -->
+      <section class="stats-grid" aria-label="Developer statistics">
+        <article class="stat-card">
+          <p class="stat-card__label">Public Repos</p>
+          <h3 class="stat-card__value" id="publicRepos">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <p class="stat-card__label">Followers</p>
+          <h3 class="stat-card__value" id="followers">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <p class="stat-card__label">Following</p>
+          <h3 class="stat-card__value" id="following">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <p class="stat-card__label">Total Stars</p>
+          <h3 class="stat-card__value" id="totalStars">0</h3>
+        </article>
+
+        <article class="stat-card">
+          <p class="stat-card__label">Total Forks</p>
+          <h3 class="stat-card__value" id="totalForks">0</h3>
+        </article>
+      </section>
+
+      <!-- Dashboard Grid -->
+      <section class="dashboard-grid">
+
+        <!-- Profile Card -->
+        <article class="profile-card" id="profile">
+          <div class="profile-card__avatar-wrapper">
+            <img
+              src=""
+              alt="GitHub user avatar"
+              class="profile-card__avatar"
+              id="userAvatar"
+            />
+          </div>
+
+          <div class="profile-card__content">
+            <h3 class="profile-card__name" id="userName">Developer Name</h3>
+            <p class="profile-card__username" id="userUsername">@username</p>
+
+            <p class="profile-card__bio" id="userBio">
+              Search for a GitHub user to view their bio and profile details.
+            </p>
+
+            <ul class="profile-card__details">
+              <li id="userLocation">Location: Not available</li>
+              <li id="userCompany">Company: Not available</li>
+              <li id="userBlog">Website: Not available</li>
+              <li id="userJoined">Joined: Not available</li>
+            </ul>
+
+            <a
+              href="#"
+              class="profile-card__button"
+              id="githubProfileLink"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View GitHub Profile
+            </a>
+          </div>
+        </article>
+
+        <!-- Language Breakdown -->
+        <article class="language-card" id="languages">
+          <div class="section-header">
+            <div>
+              <p class="section-header__eyebrow">Repository Analysis</p>
+              <h3 class="section-header__title">Language Breakdown</h3>
+            </div>
+          </div>
+
+          <div class="language-list" id="languageList">
+            <p class="empty-text">
+              Language usage will appear after searching a developer.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Repository Section -->
+      <section class="repositories-section" id="repositories">
+        <div class="section-header">
+          <div>
+            <p class="section-header__eyebrow">Public Repositories</p>
+            <h3 class="section-header__title">Repositories</h3>
+          </div>
+
+          <div class="repo-controls">
+            <label for="sortRepos" class="repo-controls__label">Sort by</label>
+            <select id="sortRepos" class="repo-controls__select">
+              <option value="stars">Most Stars</option>
+              <option value="forks">Most Forks</option>
+              <option value="updated">Recently Updated</option>
+              <option value="name">Name A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="repositories-grid" id="repositoriesGrid">
+          <article class="repo-empty-card">
+            <h4>No repositories loaded</h4>
+            <p>
+              Search for a GitHub username to view public repositories here.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+        <p>
+          Built with HTML, CSS, and JavaScript using the GitHub REST API.
+        </p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="./js/config.js"></script>
+  <script src="./js/state.js"></script>
+  <script src="./js/utils.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/render.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>
