@@ -1,5 +1,6 @@
 const searchForm = document.getElementById("searchForm");
 const usernameInput = document.getElementById("usernameInput");
+const sortReposSelect = document.getElementById("sortRepos");
 
 async function handleDeveloperSearch(event) {
   event.preventDefault();
@@ -34,6 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
   if (searchForm) {
     searchForm.addEventListener("submit", handleDeveloperSearch);
   }
+
+  if (sortReposSelect) {
+  sortReposSelect.addEventListener("change", (event) => {
+    renderSortedRepositories(event.target.value);
+  });
+}
 
   console.log("GitHub Developer Explorer initialized");
 });

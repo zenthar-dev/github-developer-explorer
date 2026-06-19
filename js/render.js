@@ -118,3 +118,8 @@ function renderRepositories(repositories) {
     .map((repo) => createRepositoryCard(repo))
     .join("");
 }
+
+function renderSortedRepositories(sortType) {
+  const sortedRepositories = sortRepositories(sortType);
+  renderRepositories(sortedRepositories);
+}
