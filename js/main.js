@@ -5,12 +5,29 @@ const sortReposSelect = document.getElementById("sortRepos");
 async function handleDeveloperSearch(event) {
   event.preventDefault();
 
-  const username = usernameInput.value;
+  const username = sanitizeUsername(usernameInput.value);
+
+  if (!username) {
+    clearDeveloperData();
+    updateStatus(
+      "Username Required",
+      "Please enter a GitHub username before searching.",
+      "warning"
+    );
+    return;
+  }
 
   try {
     setLoading(true);
     setError(null);
-    updateStatus("Fetching Profile", "Please wait while we fetch GitHub developer data...");
+
+    clearDeveloperData();
+
+    updateStatus(
+      "Fetching Profile",
+      "Please wait while we fetch GitHub developer data...",
+      "loading"
+    );
 
     const { user, repositories } = await fetchDeveloperData(username);
 
@@ -22,11 +39,14 @@ async function handleDeveloperSearch(event) {
 
     updateStatus(
       "Profile Loaded",
-      `${user.login}'s GitHub profile and basic statistics are now visible.`
+      `${user.login}'s GitHub profile, repositories, and language insights are now visible.`,
+      "success"
     );
   } catch (error) {
     setError(error.message);
-    updateStatus("Unable to Load Profile", error.message);
+    clearDeveloperData();
+
+    updateStatus("Unable to Load Profile", error.message, "error");
   } finally {
     setLoading(false);
   }

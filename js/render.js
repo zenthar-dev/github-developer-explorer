@@ -6,14 +6,14 @@ function updateTextContent(elementId, value) {
   }
 }
 
-function updateStatus(title, message) {
-  updateTextContent("statusCard", "");
-
+function updateStatus(title, message, type = "info") {
   const statusCard = document.getElementById("statusCard");
 
   if (!statusCard) {
     return;
   }
+
+  statusCard.className = `status-card status-card--${type}`;
 
   statusCard.innerHTML = `
     <h3 class="status-card__title">${title}</h3>
@@ -164,4 +164,65 @@ function renderLanguageBreakdown(languageBreakdown) {
   languageList.innerHTML = languageBreakdown
     .map((languageData) => createLanguageItem(languageData))
     .join("");
+}
+
+function renderEmptyRepositories(message = "Search for a GitHub username to view public repositories here.") {
+  const repositoriesGrid = document.getElementById("repositoriesGrid");
+
+  if (!repositoriesGrid) {
+    return;
+  }
+
+  repositoriesGrid.innerHTML = `
+    <article class="repo-empty-card">
+      <h4>No repositories loaded</h4>
+      <p>${message}</p>
+    </article>
+  `;
+}
+
+function renderEmptyLanguageBreakdown(message = "Language usage will appear after searching a developer.") {
+  const languageList = document.getElementById("languageList");
+
+  if (!languageList) {
+    return;
+  }
+
+  languageList.innerHTML = `
+    <p class="empty-text">${message}</p>
+  `;
+}
+
+function clearDeveloperData() {
+  updateTextContent("publicRepos", "0");
+  updateTextContent("followers", "0");
+  updateTextContent("following", "0");
+  updateTextContent("totalStars", "0");
+  updateTextContent("totalForks", "0");
+
+  updateTextContent("userName", "Developer Name");
+  updateTextContent("userUsername", "@username");
+  updateTextContent(
+    "userBio",
+    "Search for a GitHub user to view their bio and profile details."
+  );
+  updateTextContent("userLocation", "Location: Not available");
+  updateTextContent("userCompany", "Company: Not available");
+  updateTextContent("userBlog", "Website: Not available");
+  updateTextContent("userJoined", "Joined: Not available");
+
+  const avatar = document.getElementById("userAvatar");
+  const profileLink = document.getElementById("githubProfileLink");
+
+  if (avatar) {
+    avatar.src = "";
+    avatar.alt = "GitHub user avatar";
+  }
+
+  if (profileLink) {
+    profileLink.href = "#";
+  }
+
+  renderEmptyRepositories();
+  renderEmptyLanguageBreakdown();
 }
