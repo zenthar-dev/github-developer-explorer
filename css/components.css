@@ -178,17 +178,23 @@
   font-size: 1.6rem;
   font-weight: 850;
   margin-bottom: 0.15rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .profile-card__username {
   color: var(--color-xanadu-light);
   font-weight: 700;
   margin-bottom: 0.9rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .profile-card__bio {
   color: var(--text-secondary);
   margin-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .profile-card__details {
@@ -197,6 +203,8 @@
   margin-bottom: 1.1rem;
   color: var(--text-secondary);
   font-size: 0.94rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .profile-card__button {
@@ -417,4 +425,14 @@
 
 .status-card--loading .status-card__title {
   color: var(--color-xanadu-light);
+}
+
+/* Accessibility Focus States */
+.sidebar__link:focus-visible,
+.profile-card__button:focus-visible,
+.repo-card__button:focus-visible,
+.search-form__button:focus-visible,
+.repo-controls__select:focus-visible {
+  outline: 2px solid var(--color-xanadu);
+  outline-offset: 2.5px;
 }
