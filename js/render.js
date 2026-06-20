@@ -34,11 +34,17 @@ function renderUserStats(user, repositories) {
 
 function renderUserProfile(user) {
   const avatar = document.getElementById("userAvatar");
+  const avatarPlaceholder = document.getElementById("userAvatarPlaceholder");
   const profileLink = document.getElementById("githubProfileLink");
 
   if (avatar) {
     avatar.src = user.avatar_url;
     avatar.alt = `${user.login}'s GitHub avatar`;
+    avatar.style.display = "block";
+  }
+
+  if (avatarPlaceholder) {
+    avatarPlaceholder.style.display = "none";
   }
 
   if (profileLink) {
@@ -204,7 +210,7 @@ function clearDeveloperData() {
   updateTextContent("userUsername", "@username");
   updateTextContent(
     "userBio",
-    "Search for a GitHub user to view their bio and profile details."
+    "Search for a GitHub username to load developer profile insights."
   );
   updateTextContent("userLocation", "Location: Not available");
   updateTextContent("userCompany", "Company: Not available");
@@ -212,11 +218,17 @@ function clearDeveloperData() {
   updateTextContent("userJoined", "Joined: Not available");
 
   const avatar = document.getElementById("userAvatar");
+  const avatarPlaceholder = document.getElementById("userAvatarPlaceholder");
   const profileLink = document.getElementById("githubProfileLink");
 
   if (avatar) {
-    avatar.src = "";
+    avatar.removeAttribute("src");
     avatar.alt = "GitHub user avatar";
+    avatar.style.display = "none";
+  }
+
+  if (avatarPlaceholder) {
+    avatarPlaceholder.style.display = "flex";
   }
 
   if (profileLink) {
