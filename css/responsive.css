@@ -59,6 +59,8 @@
     align-items: flex-start;
     flex-direction: column;
     min-height: auto;
+    gap: 0.85rem;
+    padding-bottom: 1rem;
   }
 
   .hero {
