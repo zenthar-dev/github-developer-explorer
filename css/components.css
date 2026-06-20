@@ -20,20 +20,42 @@
   color: var(--text-primary);
   border: 1px solid rgba(115, 134, 120, 0.28);
 }
-
-.theme-toggle {
-  min-height: 42px;
-  padding: 0.7rem 1rem;
+.api-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
   border-radius: 999px;
-  background: rgba(115, 134, 120, 0.14);
-  color: var(--text-primary);
-  border: 1px solid rgba(115, 134, 120, 0.28);
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  background: rgba(115, 134, 120, 0.08);
+  border: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-secondary);
 }
 
-.theme-toggle:hover {
-  background: rgba(115, 134, 120, 0.24);
-  transform: translateY(-1px);
+.api-status__dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--success-color);
+  border-radius: 50%;
+  box-shadow: 0 0 6px var(--success-color);
+  display: inline-block;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
 }
 
 .search-form__input {
