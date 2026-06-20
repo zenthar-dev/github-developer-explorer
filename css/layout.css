@@ -144,3 +144,28 @@
   font-size: 0.9rem;
   text-align: center;
 }
+
+/* Mobile Header & Overlay Layout defaults (desktop) */
+.mobile-header {
+  display: none;
+}
+
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity var(--transition-normal), visibility var(--transition-normal);
+}
+
+.sidebar__close {
+  display: none;
+}

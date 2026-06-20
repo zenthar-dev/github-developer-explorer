@@ -19,7 +19,14 @@
   <div class="app">
 
     <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="mainSidebar">
+      <button class="sidebar__close" id="menuClose" aria-label="Close navigation menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
       <div class="sidebar__brand">
         <div class="sidebar__logo">GH</div>
         <div>
@@ -30,9 +37,7 @@
 
       <nav class="sidebar__nav" aria-label="Main navigation">
         <a href="#overview" class="sidebar__link active">Overview</a>
-        <a href="#profile" class="sidebar__link">Profile</a>
         <a href="#repositories" class="sidebar__link">Repositories</a>
-        <a href="#languages" class="sidebar__link">Languages</a>
         <a href="#status" class="sidebar__link">Status</a>
       </nav>
 
@@ -40,6 +45,27 @@
         <p>Built using GitHub REST API</p>
       </div>
     </aside>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="menuOverlay"></div>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <div class="mobile-header__brand">
+        <div class="mobile-header__logo">GH</div>
+        <div>
+          <h2 class="mobile-header__title">DevExplorer</h2>
+          <p class="mobile-header__subtitle">GitHub Analytics</p>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainSidebar">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </header>
 
     <!-- Main Content -->
     <main class="main-content">
